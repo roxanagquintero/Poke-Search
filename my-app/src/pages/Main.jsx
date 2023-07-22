@@ -8,7 +8,7 @@ export default function Main() {
 
   const GetPokemonData = async () => {
     let pokemonArray = [];
-    for (let pokemonNum = 1; pokemonNum < 10; pokemonNum++) {
+    for (let pokemonNum = 1; pokemonNum < 100; pokemonNum++) {
       const pokemonAPI = await fetch(
         `https://pokeapi.co/api/v2/pokemon-species/${pokemonNum}`,
         {

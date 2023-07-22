@@ -55,11 +55,11 @@ export default function Card(props) {
               className='card'
              style={{
                marginTop: "10px",
-                backgroundColor: colorPicker(pokemon.MoreInfo.types[0].type.name),
+                backgroundColor: colorPicker(pokemon.MoreInfo?.types[0]?.type?.name),
              }}
            >
              <div>
-               <h1 style={{display:'fixed'}}>{pokemon.id}</h1>
+               <h1 style={{display:'fixed'}}>#{pokemon.id}</h1>
                <img
                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
                  // src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
@@ -72,9 +72,12 @@ export default function Card(props) {
              </div>
              </div>
           </Grid>))) 
-          :( <>
+          :( <div style={{
+            marginTop: "100px",
+            
+          }}>
             <p>loading...</p>
-          </>)
+          </div>)
         }
       </Grid>
     </Box>
