@@ -37,7 +37,10 @@ export default function Main() {
       <div className="container">
         <SideBarComponent />
         <div  style={{maxWidth:'100%'}}>
-          <Card pokemonData={pokemonData} />
+          <div >
+            <Card pokemonData={pokemonData} />
+          </div>
+          
         </div>
 
         <div className="right-content"></div>

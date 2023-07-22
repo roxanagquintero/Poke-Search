@@ -12,6 +12,7 @@ body{
     margin: auto;
     padding-top: 100px;
     display: flex;
+    
 }
 .left-content,.right-content{
     flex-basis: 50%;
@@ -22,7 +23,7 @@ body{
     grid-gap:2rem;
 }
 .card{
-    width: 300px;
+    width: 400px;
     /* background-color:#9EDEF9; */
     border-radius: 1rem;
     box-shadow: 0 5px 5px rgba(0,0,0,0.5);
@@ -32,6 +33,7 @@ body{
     justify-content: space-between;
     box-sizing: border-box;
     float: 'left';
+    max-height:150px;
 }
 .right-content{
     width: 50%;
@@ -84,3 +86,14 @@ body{
     background-color: #b74555;
     border-radius: 8px;
 }
+.row {
+    float: left;
+    position: relative;
+    width: 100%;
+  }
+  
+  .column {
+    float: left;
+    position: relative;
+    width: 25%;
+  }
