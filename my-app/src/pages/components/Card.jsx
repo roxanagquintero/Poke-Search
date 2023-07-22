@@ -13,18 +13,7 @@ export default function Card(props) {
   //note: the color function is not working. the data works and is returning the types(fire,water,etc)
   //not sure why switch is not working(it worked before)
   //maybe something about timing???
-  const colorPicker = async (name) => {
-    let PokeType = "";
-    const pokemonAPI = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/${name}`,
-      {
-        method: "GET",
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        PokeType = data.types[0].type.name;
-
+  const colorPicker = (PokeType) => {
         switch (PokeType) {
           case "fairy":
             return "rgba(255, 120, 196, 0.37)"; //pink
@@ -40,12 +29,15 @@ export default function Card(props) {
             return "rgba(99, 186, 186, 0.46)"; //black/grey
           case "fire":
             return "rgba(230, 0, 0, 0.41)"; //black/grey
+            case "water":
+            return "rgba(0, 128, 255, 0.1)"; //blue
           default:
             return "white";
         }
-      });
-    console.log("poketype", PokeType);
-  };
+      };
+  
+  
+
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -63,14 +55,10 @@ export default function Card(props) {
               className='card'
              style={{
                marginTop: "10px",
-              
+                backgroundColor: colorPicker(pokemon.MoreInfo.types[0].type.name),
              }}
            >
-             <div
-               style={{
-                 backgroundColor: colorPicker(pokemon.name),
-               }}
-             >
+             <div>
                <h1 style={{display:'fixed'}}>{pokemon.id}</h1>
                <img
                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}

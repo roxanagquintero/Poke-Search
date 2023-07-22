@@ -17,7 +17,26 @@ export default function Main() {
       )
         .then((response) => response.json())
         .then((data) => {
+          console.log("data1", data);
+
           pokemonArray.push(data);
+
+          // console.log('pokemonarray',pokemonArray)
+        })
+        .then(() => {
+          pokemonArray.forEach((poke) => {
+            const pokemonAPI2 = fetch(
+              `https://pokeapi.co/api/v2/pokemon/${poke.name}`,
+              {
+                method: "GET",
+              }
+            )
+              .then((response) => response.json())
+              .then((data2) => {
+                poke.MoreInfo = data2;
+              });
+            console.log("data2", pokemonArray);
+          });
         });
     }
     // console.log("pokemon array", pokemonArray);
@@ -36,11 +55,10 @@ export default function Main() {
     <>
       <div className="container">
         <SideBarComponent />
-        <div  style={{maxWidth:'100%'}}>
-          <div >
+        <div style={{ maxWidth: "100%" }}>
+          <div>
             <Card pokemonData={pokemonData} />
           </div>
-          
         </div>
 
         <div className="right-content"></div>
