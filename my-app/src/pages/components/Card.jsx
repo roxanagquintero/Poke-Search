@@ -48,7 +48,7 @@ export default function Card(props) {
   return (
     <>  
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+      <Grid container spacing={{ xs: 2, md: 4 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {pokemonData.length !== 0 ? (pokemonData.map((pokemon, index) => (
           <Grid item xs={2} sm={4} md={4} key={index}>
              <div
@@ -58,7 +58,7 @@ export default function Card(props) {
                 backgroundColor: colorPicker(pokemon.MoreInfo?.types[0]?.type?.name),
              }}
            >
-             <div>
+             <div className='card-content'>
                <h1 style={{display:'fixed'}}>#{pokemon.id}</h1>
                <img
                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
@@ -66,7 +66,10 @@ export default function Card(props) {
                  style={{
                    flex: 1,
                    resizeMode: "contain",
+                   display: 'block',
+                   width:'100%'
                  }}
+                 alt="centered image"
                />
                <h2>{pokemon.name}</h2>
              </div>

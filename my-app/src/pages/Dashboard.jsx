@@ -4,7 +4,7 @@ import Card from "./components/Card";
 import PokeInfo from "./components/pokeInfo";
 import PokeFilter from "./components/pokeFilter";
 
-export default function Main() {
+export default function Dashboard() {
   const [pokemonData, setPokemonData] = useState([]);
 
   const GetPokemonData = async () => {
@@ -58,16 +58,10 @@ export default function Main() {
       <div className="container">
         <SideBarComponent />
         <div style={{ maxWidth: "100%" }}>
-          <div>
-             <PokeFilter pokemonData={pokemonData}/>
-          </div>
-          <div>
-            <Card pokemonData={pokemonData} />
-          </div>
+          
         </div>
 
         <div className="right-content"></div>
-        {/* <PokeInfo /> */}
       </div>
     </>
   );

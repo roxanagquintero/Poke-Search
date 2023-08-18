@@ -156,7 +156,7 @@ export default function SideBarComponent() {
         
 
         <List>
-          {["Home", "Mail", "Favorite", "Archives"].map((text, index) => (
+          {["Dashboard", "Cards"].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 sx={{
@@ -174,9 +174,10 @@ export default function SideBarComponent() {
                   }}
                 >
                   {index === 0 && <HomeIcon />}
-                  {index === 1 && <MailIcon />}
-                  {index === 2 && <FavoriteIcon />}
-                  {index === 3 && <FolderIcon />}
+                  {index === 1 && <FolderIcon />}
+                  {/* {index === 2 && <MailIcon />}
+                  {index === 3 && <FavoriteIcon />} */}
+                  
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
