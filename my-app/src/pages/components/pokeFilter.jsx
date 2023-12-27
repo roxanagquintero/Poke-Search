@@ -3,21 +3,30 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
 export default function PokeFilter(props) {
-  const { pokemonData } = props;
+  const { pokemonData, setFilterName } = props;
 
   function DropDown(data) {
     console.log('drowpdown',data)
+
+    const optionsWithAll = [
+      { name: "Display All" }, // Add the "Display All" option
+      ...data.data,
+    ];
+
     return (
       <>
         <Autocomplete
           disablePortal
-          id="combo-box-demo"
-          options={data.data}
+          id={`combo-box-${data.label.toLowerCase()}`}
+          options={optionsWithAll}
           getOptionLabel={(option) => option[data.searchby]}
           sx={{ width: 300 }}
           renderInput={(params) => (
             <TextField {...params} label={data.label} />
           )}
+          onChange={(event, newValue) => {
+            setFilterName(newValue && newValue.name !== "Display All" ? newValue.name : "");
+          }}
         />
       </>
     );

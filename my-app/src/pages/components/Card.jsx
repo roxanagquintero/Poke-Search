@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
 export default function Card(props) {
-  const { pokemonData } = props;
+  const { pokemonData, filterName } = props;
   //note: the color function is not working. the data works and is returning the types(fire,water,etc)
   //not sure why switch is not working(it worked before)
   //maybe something about timing???
@@ -46,46 +46,58 @@ export default function Card(props) {
     color: theme.palette.text.secondary,
   }));
   return (
-    <>  
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={{ xs: 2, md: 4 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-        {pokemonData.length !== 0 ? (pokemonData.map((pokemon, index) => (
-          <Grid item xs={2} sm={4} md={4} key={index}>
-             <div
-              className='card'
-             style={{
-               marginTop: "10px",
-                backgroundColor: colorPicker(pokemon.MoreInfo?.types[0]?.type?.name),
-             }}
-           >
-             <div className='card-content'>
-               <h1 style={{display:'fixed'}}>#{pokemon.id}</h1>
-               <img
-                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-                 // src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
-                 style={{
-                   flex: 1,
-                   resizeMode: "contain",
-                   display: 'block',
-                   width:'100%'
-                 }}
-                 alt="centered image"
-               />
-               <h2>{pokemon.name}</h2>
-             </div>
-             </div>
-          </Grid>))) 
-          :( <div style={{
-            marginTop: "100px",
-            
-          }}>
-            <p>loading...</p>
-          </div>)
-        }
-      </Grid>
-    </Box>
-    
-  
-    </> 
+    <>
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 4 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+        >
+          {pokemonData.length !== 0 ? (
+            pokemonData
+              .filter((pokemon) =>
+                filterName ? pokemon.name.includes(filterName) : true
+              )
+              .map((pokemon, index) => (
+                <Grid item xs={2} sm={4} md={4} key={index}>
+                  <div
+                    className="card"
+                    style={{
+                      marginTop: "10px",
+                      backgroundColor: colorPicker(
+                        pokemon.MoreInfo?.types[0]?.type?.name
+                      ),
+                    }}
+                  >
+                    <div className="card-content">
+                      <h1 style={{ display: "fixed" }}>#{pokemon.id}</h1>
+                      <img
+                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+                        style={{
+                          flex: 1,
+                          resizeMode: "contain",
+                          display: "block",
+                          width: "100%",
+                        }}
+                        alt="centered image"
+                      />
+                      <h2>{pokemon.name}</h2>
+                    </div>
+                  </div>
+                </Grid>
+              )
+            )
+          ) : (
+            <div
+              style={{
+                marginTop: "100px",
+              }}
+            >
+              <p>loading...</p>
+            </div>
+          )}
+        </Grid>
+      </Box>
+    </>
   );
 }

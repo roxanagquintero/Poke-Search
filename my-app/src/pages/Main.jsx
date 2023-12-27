@@ -6,7 +6,7 @@ import PokeFilter from "./components/pokeFilter";
 
 export default function Main() {
   const [pokemonData, setPokemonData] = useState([]);
-
+  const [filterName, setFilterName] = useState("");
   const GetPokemonData = async () => {
     let pokemonArray = [];
     for (let pokemonNum = 1; pokemonNum < 20; pokemonNum++) {
@@ -59,10 +59,10 @@ export default function Main() {
         <SideBarComponent />
         <div style={{ maxWidth: "100%" }}>
           <div>
-             <PokeFilter pokemonData={pokemonData}/>
+             <PokeFilter pokemonData={pokemonData} setFilterName={setFilterName}/>
           </div>
           <div>
-            <Card pokemonData={pokemonData} />
+          <Card pokemonData={pokemonData} filterName={filterName === "Display All" ? "" : filterName} />
           </div>
         </div>
 
